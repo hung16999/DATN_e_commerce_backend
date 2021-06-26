@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require 'db_connection.php';
 
-$orders = mysqli_query($db_conn, "SELECT table_order.id_order, users.role, users.name, table_order.phone, table_order.address, table_order.id_order_status FROM users, table_order WHERE table_order.id_customer = users.id_account;");
+$orders = mysqli_query($db_conn, "SELECT table_order.id_order, users.role, users.name, table_order.phone, table_order.address, table_order.id_order_status, table_order.create_date FROM users, table_order WHERE table_order.id_customer = users.id_account;");
 
 if (mysqli_num_rows($orders) > 0) {
     $ordersList = mysqli_fetch_all($orders, MYSQLI_ASSOC);
