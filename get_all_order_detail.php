@@ -7,7 +7,11 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require 'db_connection.php';
 
-$orders = mysqli_query($db_conn, "SELECT order_detail.id_order, order_detail.id_product, order_detail.quantity, product.name, product.price, product.discount, product.src FROM product, order_detail WHERE product.id = order_detail.id_product;");
+$sql = "SELECT order_detail.id_order, order_detail.id_product,
+order_detail.quantity, product.name, product.price, product.discount, product.src
+FROM product, order_detail WHERE product.id = order_detail.id_product;";
+
+$orders = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($orders) > 0) {
     $ordersList = mysqli_fetch_all($orders, MYSQLI_ASSOC);

@@ -1,17 +1,15 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: GET");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 
 require 'db_connection.php';
 
-$users = mysqli_query($db_conn, "SELECT * FROM `users`");
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-if (mysqli_num_rows($users) > 0) {
-    $usersList = mysqli_fetch_all($users, MYSQLI_ASSOC);
-    echo json_encode($usersList, JSON_NUMERIC_CHECK);
-} else {
-    echo json_encode(["success" => 0]);
-}
+$user = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'");
+
+$resultUser = mysqli_fetch_all($user, MYSQLI_ASSOC);
+echo json_encode($resultUser, JSON_NUMERIC_CHECK);
+
+$conn->close();

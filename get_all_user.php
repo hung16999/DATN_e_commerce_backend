@@ -7,11 +7,11 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require 'db_connection.php';
 
-$products = mysqli_query($conn, "SELECT * FROM `product`");
+$users = mysqli_query($conn, "SELECT * FROM `users`");
 
-if (mysqli_num_rows($products) > 0) {
-    $productsList = mysqli_fetch_all($products, MYSQLI_ASSOC);
-    echo json_encode($productsList, JSON_NUMERIC_CHECK);
+if (mysqli_num_rows($users) > 0) {
+    $usersList = mysqli_fetch_all($users, MYSQLI_ASSOC);
+    echo json_encode($usersList, JSON_NUMERIC_CHECK);
 } else {
     echo json_encode(["success" => 0]);
 }
