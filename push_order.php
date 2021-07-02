@@ -2,12 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "store";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+require 'db_connection.php';
 
 $id_order = $_POST['id_order'];
 $id_customer = $_POST['id_customer'];
@@ -20,13 +15,13 @@ if ($conn->connect_error) {
 }
 
 $sql = "INSERT INTO table_order
-(id_order, id_customer, id_salesman, id_shipper, phone, address, id_order_status, create_date)
-VALUES ('$id_order', '$id_customer', 'sale2', 'ship1', '$phone', '$address', '$id_order_status', '$create_date')";
+(id_order, id_customer, phone, address, id_order_status, create_date)
+VALUES ('$id_order', '$id_customer', '$phone', '$address', '$id_order_status', '$create_date')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+if ($conn->query($sql) === true) {
+    echo true;
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo $conn->error;
 }
 
 $conn->close();

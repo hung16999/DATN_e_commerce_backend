@@ -19,9 +19,9 @@ $sql = "INSERT INTO order_detail (id_order, id_product, quantity)
 VALUES ('$id_order', '$id_product', '$quantity')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo True;
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo $conn->error;
 }
 
 $conn->close();

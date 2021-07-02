@@ -15,8 +15,8 @@ $src = $_POST['src'];
 $sql = "INSERT INTO product (id, name, type, price, discount, remains, src)
 VALUES ('$id', '$name', '$type', '$price', '$discount', '$remains', '$src')";
 
-if ($conn->query($sql) === TRUE) {
-    echo TRUE;
+if ($conn->query($sql) === true) {
+    echo true;
 } else {
     echo $conn->error;
 }

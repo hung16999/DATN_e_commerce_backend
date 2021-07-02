@@ -2,12 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "store";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+require 'db_connection.php';
 
 $id_account = $_POST['id_account'];
 $username = $_POST['username'];
@@ -22,10 +17,10 @@ if ($conn->connect_error) {
 
 $sql = "UPDATE users SET username='$username', password='$password', name='$name', phone='$phone', role='$role' WHERE id_account='$id_account'";
 
-if ($conn->query($sql) === TRUE) {
-    echo True;
+if ($conn->query($sql) === true) {
+    echo true;
 } else {
-    echo "Error updating record: " . $conn->error;
+    echo $conn->error;
 }
 
 $conn->close();
