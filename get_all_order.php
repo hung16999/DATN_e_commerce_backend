@@ -16,9 +16,5 @@ ORDER BY table_order.create_date;";
 
 $orders = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($orders) > 0) {
-    $ordersList = mysqli_fetch_all($orders, MYSQLI_ASSOC);
-    echo json_encode($ordersList, JSON_NUMERIC_CHECK);
-} else {
-    echo json_encode(["success" => 0]);
-}
+$ordersList = mysqli_fetch_all($orders, MYSQLI_ASSOC);
+echo json_encode($ordersList, JSON_NUMERIC_CHECK);

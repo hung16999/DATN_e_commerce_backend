@@ -7,7 +7,11 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require 'db_connection.php';
 
-$users = mysqli_query($conn, "SELECT * FROM `users`");
+$type = $_POST['type'];
 
-$usersList = mysqli_fetch_all($users, MYSQLI_ASSOC);
-echo json_encode($usersList, JSON_NUMERIC_CHECK);
+$products = mysqli_query($conn, "SELECT * FROM product WHERE type = '$type'");
+
+$productsList = mysqli_fetch_all($products, MYSQLI_ASSOC);
+echo json_encode($productsList, JSON_NUMERIC_CHECK);
+
+$conn->close();

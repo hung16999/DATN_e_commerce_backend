@@ -9,9 +9,6 @@ require 'db_connection.php';
 
 $products = mysqli_query($conn, "SELECT * FROM `product`");
 
-if (mysqli_num_rows($products) > 0) {
-    $productsList = mysqli_fetch_all($products, MYSQLI_ASSOC);
-    echo json_encode($productsList, JSON_NUMERIC_CHECK);
-} else {
-    echo json_encode(["success" => 0]);
-}
+$productsList = mysqli_fetch_all($products, MYSQLI_ASSOC);
+echo json_encode($productsList, JSON_NUMERIC_CHECK);
+
